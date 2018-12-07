@@ -2,7 +2,8 @@
 debug: true
 
 server:
-  port: 20182
+  # 自定义端口号，方便开发测试
+  port: 9009
 
 eureka:
   client:
