@@ -2,6 +2,7 @@ package rebue.hlw.ctrl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 
+import rebue.hlw.dic.SexDic;
 import rebue.hlw.mo.HlwStudentMo;
 import rebue.hlw.svc.HlwStudentSvc;
 import rebue.robotech.dic.ResultDic;
@@ -186,6 +188,15 @@ public class HlwStudentCtrl {
     HlwStudentMo getById(@RequestParam("id") final java.lang.Long id) {
         _log.info("get HlwStudentMo by id: " + id);
         return svc.getById(id);
+    }
+
+    /**
+     * 通过性别获取学生信息列表
+     */
+    @GetMapping("/hlw/student/listbysex")
+    List<HlwStudentMo> listBySex(@RequestParam("sex") final SexDic sex) {
+        _log.info("listBySex: {}", sex);
+        return svc.listBySex(sex);
     }
 
 }
