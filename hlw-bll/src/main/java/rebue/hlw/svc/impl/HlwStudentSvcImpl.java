@@ -1,13 +1,11 @@
 package rebue.hlw.svc.impl;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import rebue.hlw.dic.SexDic;
 import rebue.hlw.mapper.HlwStudentMapper;
 import rebue.hlw.mo.HlwStudentMo;
@@ -42,7 +40,7 @@ public class HlwStudentSvcImpl extends MybatisBaseSvcImpl<HlwStudentMo, java.lan
      */
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public int add(final HlwStudentMo mo) {
+    public int add(HlwStudentMo mo) {
         _log.info("添加学生信息");
         // 如果id为空那么自动生成分布式id
         if (mo.getId() == null || mo.getId() == 0) {
@@ -59,5 +57,4 @@ public class HlwStudentSvcImpl extends MybatisBaseSvcImpl<HlwStudentMo, java.lan
         _log.info("通过性别获取学生信息列表: {}", sex);
         return _mapper.listBySex(sex);
     }
-
 }

@@ -1,7 +1,6 @@
 package rebue.hlw.svc;
 
 import java.util.List;
-
 import rebue.hlw.dic.SexDic;
 import rebue.hlw.mo.HlwStudentMo;
 import rebue.robotech.svc.MybatisBaseSvc;
@@ -17,5 +16,4 @@ public interface HlwStudentSvc extends MybatisBaseSvc<HlwStudentMo, java.lang.Lo
      * 通过性别获取学生信息列表
      */
     List<HlwStudentMo> listBySex(SexDic sex);
-
 }
