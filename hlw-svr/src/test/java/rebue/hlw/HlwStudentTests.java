@@ -12,7 +12,7 @@ import rebue.wheel.test.MockDataUtils;
  *
  * @mbg.generated 自动生成的注释，如需修改本注释，请删除本行
  */
-public class HlwStudentTest {
+public class HlwStudentTests {
 
     /**
      *  @mbg.generated 自动生成，如需修改，请删除本行
