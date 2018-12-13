@@ -1,12 +1,11 @@
 package rebue.hlw;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import org.junit.Test;
 import rebue.hlw.mo.HlwStudentMo;
 import rebue.wheel.OkhttpUtils;
+import rebue.wheel.test.MockDataUtils;
 
 /**
  * 学生信息
@@ -16,74 +15,29 @@ import rebue.wheel.OkhttpUtils;
 public class HlwStudentTest {
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     private final String hostUrl = "http://127.0.0.1:9009";
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-    private final String moData = "{\"id\":\"1\",\"studentCode\":\"1\",\"name\":\"1\",\"phone1\":\"1\",\"phone2\":\"1\",\"idCard\":\"1\",\"age\":\"1\",\"birthday\":1544429401633,\"sex\":\"1\",\"height\":\"1\",\"weight\":\"1\",\"isCpc\":true,\"regTime\":1544429401634}";
-
-    /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-    private final ObjectMapper mapper = new ObjectMapper();
-
-    /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Test
-    public void addTest() throws JsonParseException, JsonMappingException, IOException {
-        HlwStudentMo mo = new HlwStudentMo();
-        mo = mapper.readValue(moData, HlwStudentMo.class);
+    public void test() throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException {
+        HlwStudentMo mo = (HlwStudentMo) MockDataUtils.newRandomPojo(new HlwStudentMo().getClass());
         System.out.println("添加学生信息的参数为：" + mo);
-        String result = OkhttpUtils.postByJsonParams(hostUrl + "/hlw/student", mo);
-        System.out.println("添加学生信息的返回值为：" + result);
-    }
-
-    /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-    @Test
-    public void modifyTest() throws JsonParseException, JsonMappingException, IOException {
-        HlwStudentMo mo = new HlwStudentMo();
-        mo = mapper.readValue(moData, HlwStudentMo.class);
-        System.out.println("修改学生信息的参数为：" + mo);
-        String result = OkhttpUtils.putByJsonParams(hostUrl + "/hlw/student", mo);
-        System.out.println("修改学生信息的返回值为：" + result);
-    }
-
-    /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-    @Test
-    public void listTest() throws JsonParseException, JsonMappingException, IOException {
-        String result = OkhttpUtils.get(hostUrl + "/hlw/student?pageNum=1&pageSize=5");
-        System.out.println("查询学生信息的返回值为：" + result);
-    }
-
-    /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-    @Test
-    public void getByIdTest() throws JsonParseException, JsonMappingException, IOException {
-        HlwStudentMo mo = new HlwStudentMo();
-        mo = mapper.readValue(moData, HlwStudentMo.class);
+        String addResult = OkhttpUtils.postByJsonParams(hostUrl + "/hlw/student", mo);
+        System.out.println("添加学生信息的返回值为：" + addResult);
+        String listResult = OkhttpUtils.get(hostUrl + "/hlw/student?pageNum=1&pageSize=5");
+        System.out.println("查询学生信息的返回值为：" + listResult);
         System.out.println("获取单个学生信息的参数为：" + mo.getId());
-        String result = OkhttpUtils.get(hostUrl + "/hlw/student/getbyid?id=" + mo.getId());
-        System.out.println("获取单个学生信息的返回值为：" + result);
-    }
-
-    /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-    @Test
-    public void delTest() throws JsonParseException, JsonMappingException, IOException {
-        HlwStudentMo mo = new HlwStudentMo();
-        mo = mapper.readValue(moData, HlwStudentMo.class);
+        String getByIdResult = OkhttpUtils.get(hostUrl + "/hlw/student/getbyid?id=" + mo.getId());
+        System.out.println("获取单个学生信息的返回值为：" + getByIdResult);
+        System.out.println("修改学生信息的参数为：" + mo);
+        String modifyResult = OkhttpUtils.putByJsonParams(hostUrl + "/hlw/student", mo);
+        System.out.println("修改学生信息的返回值为：" + modifyResult);
         System.out.println("删除学生信息的参数为：" + mo.getId());
-        String result = OkhttpUtils.delete(hostUrl + "/hlw/student?id=" + mo.getId());
-        System.out.println("删除学生信息的返回值为：" + result);
+        String deleteResult = OkhttpUtils.delete(hostUrl + "/hlw/student?id=" + mo.getId());
+        System.out.println("删除学生信息的返回值为：" + deleteResult);
     }
 }

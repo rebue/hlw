@@ -2,14 +2,11 @@ package ${modulePackage};
 
 import java.io.IOException;
 import org.junit.Test;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import ${moClassFullName};
 import rebue.wheel.OkhttpUtils;
+import rebue.wheel.test.MockDataUtils;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * ${table.remarks}
@@ -19,74 +16,30 @@ import rebue.wheel.OkhttpUtils;
 public class ${entityName}Test {
 
 	/**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
+	 * @mbg.generated 自动生成，如需修改，请删除本行
+	 */
 	private final String hostUrl = "http://127.0.0.1:9009";
-	
-	/**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-	private final String moData = "${moData}";
-	
-	/**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-	private final ObjectMapper mapper = new ObjectMapper();
 
 	/**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
+	 * @mbg.generated 自动生成，如需修改，请删除本行
+	 */
 	@Test
-	public void addTest() throws JsonParseException, JsonMappingException, IOException {
-		${entityName}Mo mo = new ${entityName}Mo();
-		mo = mapper.readValue(moData, ${entityName}Mo.class);
+	public void test() throws SecurityException, NoSuchMethodException, IllegalArgumentException,
+			IllegalAccessException, InvocationTargetException, InstantiationException, IOException {
+		${entityName}Mo mo = (${entityName}Mo) MockDataUtils.newRandomPojo(new ${entityName}Mo().getClass());
 		System.out.println("添加${table.remarks}的参数为：" + mo);
-		String result = OkhttpUtils.postByJsonParams(hostUrl + "/${strutil.toLowerCase(entityNamePrefix)}/${strutil.toLowerCase(entitySimpleName)}", mo);
-		System.out.println("添加${table.remarks}的返回值为：" + result);
-	}
-	
-	/**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-	@Test
-	public void modifyTest() throws JsonParseException, JsonMappingException, IOException {
-		${entityName}Mo mo = new ${entityName}Mo();
-		mo = mapper.readValue(moData, ${entityName}Mo.class);
-		System.out.println("修改${table.remarks}的参数为：" + mo);
-		String result = OkhttpUtils.putByJsonParams(hostUrl + "/${strutil.toLowerCase(entityNamePrefix)}/${strutil.toLowerCase(entitySimpleName)}", mo);
-		System.out.println("修改${table.remarks}的返回值为：" + result);
-	}
-	
-	/**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-	@Test
-	public void listTest() throws JsonParseException, JsonMappingException, IOException {
-		String result = OkhttpUtils.get(hostUrl + "/${strutil.toLowerCase(entityNamePrefix)}/${strutil.toLowerCase(entitySimpleName)}?pageNum=1&pageSize=5");
-		System.out.println("查询${table.remarks}的返回值为：" + result);
-	}
-	
-	/**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-	@Test
-	public void getByIdTest() throws JsonParseException, JsonMappingException, IOException {
-		${entityName}Mo mo = new ${entityName}Mo();
-		mo = mapper.readValue(moData, ${entityName}Mo.class);
+		String addResult = OkhttpUtils.postByJsonParams(hostUrl + "/${strutil.toLowerCase(entityNamePrefix)}/${strutil.toLowerCase(entitySimpleName)}", mo);
+		System.out.println("添加${table.remarks}的返回值为：" + addResult);
+		String listResult = OkhttpUtils.get(hostUrl + "/${strutil.toLowerCase(entityNamePrefix)}/${strutil.toLowerCase(entitySimpleName)}?pageNum=1&pageSize=5");
+		System.out.println("查询${table.remarks}的返回值为：" + listResult);
 		System.out.println("获取单个${table.remarks}的参数为：" + mo.getId());
-		String result = OkhttpUtils.get(hostUrl + "/${strutil.toLowerCase(entityNamePrefix)}/${strutil.toLowerCase(entitySimpleName)}/getbyid?id=" + mo.getId());
-		System.out.println("获取单个${table.remarks}的返回值为：" + result);
-	}
-	
-	/**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-	@Test
-	public void delTest() throws JsonParseException, JsonMappingException, IOException {
-		${entityName}Mo mo = new ${entityName}Mo();
-		mo = mapper.readValue(moData, ${entityName}Mo.class);
+		String getByIdResult = OkhttpUtils.get(hostUrl + "/${strutil.toLowerCase(entityNamePrefix)}/${strutil.toLowerCase(entitySimpleName)}/getbyid?id=" + mo.getId());
+		System.out.println("获取单个${table.remarks}的返回值为：" + getByIdResult);
+		System.out.println("修改${table.remarks}的参数为：" + mo);
+		String modifyResult = OkhttpUtils.putByJsonParams(hostUrl + "/${strutil.toLowerCase(entityNamePrefix)}/${strutil.toLowerCase(entitySimpleName)}", mo);
+		System.out.println("修改${table.remarks}的返回值为：" + modifyResult);
 		System.out.println("删除${table.remarks}的参数为：" + mo.getId());
-		String result = OkhttpUtils.delete(hostUrl + "/${strutil.toLowerCase(entityNamePrefix)}/${strutil.toLowerCase(entitySimpleName)}?id=" + mo.getId());
-		System.out.println("删除${table.remarks}的返回值为：" + result);
+		String deleteResult = OkhttpUtils.delete(hostUrl + "/${strutil.toLowerCase(entityNamePrefix)}/${strutil.toLowerCase(entitySimpleName)}?id=" + mo.getId());
+		System.out.println("删除${table.remarks}的返回值为：" + deleteResult);
 	}
 }
