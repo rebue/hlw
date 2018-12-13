@@ -64,7 +64,7 @@ public class HlwStudentCtrl {
                 _log.info("{}: mo-{}", msg, mo);
                 ro.setMsg(msg);
                 ro.setResult(ResultDic.SUCCESS);
-                ro.setId(mo.getId());
+                ro.setId(mo.getId().toString());
                 return ro;
             } else {
                 String msg = "添加失败";

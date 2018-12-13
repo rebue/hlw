@@ -22,7 +22,7 @@
 	},
 	{
 		"templateName": "test.btl",
-		"targetDir": "../hlw-svr/src/test/java/${modulePath}/",
+		"targetDir": "../hlw-svr/src/test/java/${modulePath}/test/",
 		"targetFile": "${entityName}Tests.java",
 		"isGenTargetOnMiddleTable": false,
 		"backup": false
