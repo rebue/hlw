@@ -1,9 +1,11 @@
 package rebue.hlw;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import org.junit.Test;
 import rebue.hlw.mo.HlwStudentMo;
+import rebue.robotech.ro.IdRo;
 import rebue.wheel.OkhttpUtils;
 import rebue.wheel.test.MockDataUtils;
 
@@ -20,14 +22,21 @@ public class HlwStudentTests {
     private final String hostUrl = "http://127.0.0.1:9009";
 
     /**
+     *  基本的增删改查
+     *
      *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Test
-    public void test() throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException {
+    public void crudTest() throws SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException {
         HlwStudentMo mo = (HlwStudentMo) MockDataUtils.newRandomPojo(new HlwStudentMo().getClass());
+        mo.setId(null);
         System.out.println("添加学生信息的参数为：" + mo);
         String addResult = OkhttpUtils.postByJsonParams(hostUrl + "/hlw/student", mo);
         System.out.println("添加学生信息的返回值为：" + addResult);
+        ObjectMapper objectMapper = new ObjectMapper();
+        IdRo idRo = objectMapper.readValue(addResult, IdRo.class);
+        System.out.println(idRo);
+        mo.setId(idRo.getId());
         String listResult = OkhttpUtils.get(hostUrl + "/hlw/student?pageNum=1&pageSize=5");
         System.out.println("查询学生信息的返回值为：" + listResult);
         System.out.println("获取单个学生信息的参数为：" + mo.getId());

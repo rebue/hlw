@@ -19,6 +19,7 @@ import rebue.hlw.dic.SexDic;
 import rebue.hlw.mo.HlwStudentMo;
 import rebue.hlw.svc.HlwStudentSvc;
 import rebue.robotech.dic.ResultDic;
+import rebue.robotech.ro.IdRo;
 import rebue.robotech.ro.Ro;
 
 /**
@@ -53,9 +54,9 @@ public class HlwStudentCtrl {
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
     @PostMapping("/hlw/student")
-    Ro add(@RequestBody HlwStudentMo mo) throws Exception {
+    IdRo add(@RequestBody HlwStudentMo mo) throws Exception {
         _log.info("add HlwStudentMo: {}", mo);
-        Ro ro = new Ro();
+        IdRo ro = new IdRo();
         try {
             int result = svc.add(mo);
             if (result == 1) {
@@ -63,6 +64,7 @@ public class HlwStudentCtrl {
                 _log.info("{}: mo-{}", msg, mo);
                 ro.setMsg(msg);
                 ro.setResult(ResultDic.SUCCESS);
+                ro.setId(mo.getId());
                 return ro;
             } else {
                 String msg = "添加失败";
