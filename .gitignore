@@ -4,6 +4,7 @@ target
 .settings
 logs
 .DS_Store
+*.pjb
 *.pdb
 *.ldb
 *.gz
