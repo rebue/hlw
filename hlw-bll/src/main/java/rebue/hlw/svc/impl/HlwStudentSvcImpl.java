@@ -6,11 +6,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import rebue.hlw.dao.HlwStudentDao;
 import rebue.hlw.dic.SexDic;
+import rebue.hlw.jo.HlwStudentJo;
 import rebue.hlw.mapper.HlwStudentMapper;
 import rebue.hlw.mo.HlwStudentMo;
 import rebue.hlw.svc.HlwStudentSvc;
-import rebue.robotech.svc.impl.MybatisBaseSvcImpl;
+import rebue.robotech.svc.impl.BaseSvcImpl;
 
 /**
  * 学生信息
@@ -28,7 +30,7 @@ import rebue.robotech.svc.impl.MybatisBaseSvcImpl;
  */
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 @Service
-public class HlwStudentSvcImpl extends MybatisBaseSvcImpl<HlwStudentMo, java.lang.Long, HlwStudentMapper> implements HlwStudentSvc {
+public class HlwStudentSvcImpl extends BaseSvcImpl<java.lang.Long, HlwStudentJo, HlwStudentDao, HlwStudentMo, HlwStudentMapper> implements HlwStudentSvc {
 
     /**
      * @mbg.generated 自动生成，如需修改，请删除本行

@@ -7,9 +7,13 @@ spring:
     name: hlw-svr
   profiles:
     active: dev
-  metrics:
-    servo:
-      enabled: false
+  jpa:
+    # 打印SQL
+    show-sql: true
+    hibernate:
+      naming:
+        # 识别大写表
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       
 eureka:
   instance:
@@ -22,6 +26,7 @@ mybatis:
   configuration:
     # 自动将数据库中用下划线分隔单词的风格转换为小驼峰风格
     map-underscore-to-camel-case: true
+    # 自动转化枚举类型
     default-enum-type-handler: rebue.wheel.mybatis.AutoEnumTypeHandler
 
 pagehelper:

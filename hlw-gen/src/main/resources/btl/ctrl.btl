@@ -224,7 +224,7 @@ public class ${entityName}Ctrl {
             print(id.key);
         }
     &>) {
-        _log.info("get ${moClassShortName} by id: " + id);
+        _log.info("get ${moClassShortName} by id: {}", id);
         return svc.getById(id);
     }
 

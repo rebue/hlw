@@ -14,11 +14,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import ${modulePackage}.dao.${entityName}Dao;
+import ${modulePackage}.jo.${entityName}Jo;
 import ${modulePackage}.mapper.${entityName}Mapper;
 import ${moClassFullName};
 import ${modulePackage}.svc.${entityName}Svc;
 
-import rebue.robotech.svc.impl.MybatisBaseSvcImpl;
+import rebue.robotech.svc.impl.BaseSvcImpl;
 
 /**
  * ${table.remarks}
@@ -36,14 +38,14 @@ import rebue.robotech.svc.impl.MybatisBaseSvcImpl;
  */
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 @Service
-public class ${entityName}SvcImpl extends MybatisBaseSvcImpl<${moClassShortName}, <&
+public class ${entityName}SvcImpl extends BaseSvcImpl<<&
 		for(id in ids){
 			if(!idLP.first) {
 				print(', ');
 			}
 		    print(id.value);
 		}
-	&>, ${entityName}Mapper> implements ${entityName}Svc {
+	&>, ${entityName}Jo, ${entityName}Dao, ${moClassShortName}, ${entityName}Mapper> implements ${entityName}Svc {
 	
     /**
      * @mbg.generated 自动生成，如需修改，请删除本行
