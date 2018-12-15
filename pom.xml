@@ -4,12 +4,11 @@
 	<parent>
 		<groupId>com.github.rebue.common-pom</groupId>
 		<artifactId>sb-parent</artifactId>
-		<version>1.0.8</version>
+		<version>1.0.9</version>
 	</parent>
 
 	<groupId>com.github.rebue.hlw</groupId>
 	<artifactId>hlw</artifactId>
-	<version>1.0.9</version>
 	<packaging>pom</packaging>
 	<description>基于Spring CLoud构建微服务的演示项目</description>
 
@@ -17,7 +16,7 @@
 		<module>hlw-gen</module>
 		<module>hlw-api</module>
 		<module>hlw-bll</module>
-		<module>hlw-svr</module>
+<!-- 		<module>hlw-svr</module> -->
 	</modules>
 
 	<dependencyManagement>
