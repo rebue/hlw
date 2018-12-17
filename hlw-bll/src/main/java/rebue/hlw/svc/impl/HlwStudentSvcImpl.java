@@ -1,6 +1,9 @@
 package rebue.hlw.svc.impl;
 
 import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -36,6 +39,9 @@ public class HlwStudentSvcImpl extends BaseSvcImpl<java.lang.Long, HlwStudentJo,
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
     private static final Logger _log = LoggerFactory.getLogger(HlwStudentSvcImpl.class);
+    
+    @Resource
+    private HlwStudentDao dao;
 
     /**
      * @mbg.generated 自动生成，如需修改，请删除本行
@@ -58,5 +64,10 @@ public class HlwStudentSvcImpl extends BaseSvcImpl<java.lang.Long, HlwStudentJo,
     public List<HlwStudentMo> listBySex(final SexDic sex) {
         _log.info("通过性别获取学生信息列表: {}", sex);
         return _mapper.listBySex(sex);
+    }
+    
+    @Override
+    public List<HlwStudentJo> listEx() {
+    	return dao.findAll();
     }
 }

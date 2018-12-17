@@ -33,5 +33,12 @@
 		"targetFile": "${entityName}Dao.java",
 		"isGenTargetOnMiddleTable": false,
 		"backup": false
+	},
+	{
+		"templateName": "jo.btl",
+		"targetDir": "../hlw-api/src/main/java/${modulePath}/jo/",
+		"targetFile": "${entityName}Jo.java",
+		"isGenTargetOnMiddleTable": false,
+		"backup": false
 	}
 ]

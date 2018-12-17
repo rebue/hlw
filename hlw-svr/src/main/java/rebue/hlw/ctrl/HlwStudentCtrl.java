@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import rebue.hlw.dic.SexDic;
+import rebue.hlw.jo.HlwStudentJo;
 import rebue.hlw.mo.HlwStudentMo;
 import rebue.hlw.svc.HlwStudentSvc;
 import rebue.robotech.dic.ResultDic;
@@ -182,7 +183,7 @@ public class HlwStudentCtrl {
      */
     @GetMapping("/hlw/student/getbyid")
     HlwStudentMo getById(@RequestParam("id") java.lang.Long id) {
-        _log.info("get HlwStudentMo by id: " + id);
+        _log.info("get HlwStudentMo by id: {}", id);
         return svc.getById(id);
     }
 
@@ -193,5 +194,10 @@ public class HlwStudentCtrl {
     List<HlwStudentMo> listBySex(@RequestParam("sex") final SexDic sex) {
         _log.info("listBySex: {}", sex);
         return svc.listBySex(sex);
+    }
+    
+    @GetMapping("/hlw/student/listex")
+    public List<HlwStudentJo> listEx() {
+    	return svc.listEx();
     }
 }
