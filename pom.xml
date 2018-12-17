@@ -16,7 +16,7 @@
 		<module>hlw-gen</module>
 		<module>hlw-api</module>
 		<module>hlw-bll</module>
-<!-- 		<module>hlw-svr</module> -->
+		<module>hlw-svr</module>
 	</modules>
 
 	<dependencyManagement>
