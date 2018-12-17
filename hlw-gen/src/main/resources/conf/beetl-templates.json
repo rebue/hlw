@@ -26,5 +26,12 @@
 		"targetFile": "${entityName}Tests.java",
 		"isGenTargetOnMiddleTable": false,
 		"backup": false
+	},
+	{
+		"templateName": "dao.btl",
+		"targetDir": "../hlw-bll/src/main/java/${modulePath}/dao/",
+		"targetFile": "${entityName}Dao.java",
+		"isGenTargetOnMiddleTable": false,
+		"backup": false
 	}
 ]
