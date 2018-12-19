@@ -6,6 +6,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,11 +20,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * The persistent class for the ${className} database table.
+ * The persistent class for the ${tableName} database table.
  * @mbg.generated 自动生成，如需修改，请删除本行
  */
 @Entity
-@Table(name = "${className}")
+@Table(name = "${tableName}")
 @Getter
 @Setter
 @ToString
@@ -56,6 +58,21 @@ public class ${entityName}Jo implements Serializable {
 	        	println('@Temporal(TemporalType.DATE)');
 	        	println('private Date ' + props[i].code + ';');
 	        }
+		}
+	&>
+	
+	<&
+		for(feignKey in feignKeys) {
+			println('/**');
+        	println('*@mbg.generated 自动生成，如需修改，请删除本行');
+        	println('*/');
+			print('@JoinColumn(name = "'+feignKey.fkFieldName+'", referencedColumnName = "'+feignKey.pkFieldName+'"');
+			if(!feignKey.isNullable) print(', nullable = false');
+			println(')');
+		    print('@ManyToOne(');
+			if(!feignKey.isNullable) print('optional = false');
+			println(')');
+		    println('private '+feignKey.pkClassName+' '+feignKey.pkBeanName+';');
 		}
 	&>
 
