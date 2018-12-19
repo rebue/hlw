@@ -4,6 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import ${modulePackage}.jo.${entityName}Jo;
 
-public interface ${entityName}Dao extends JpaRepository<${entityName}Jo, Long> {
+public interface ${entityName}Dao extends JpaRepository<${entityName}Jo, <&
+		for(id in ids){
+			if(!idLP.first) {
+				print(', ');
+			}
+		    print(id.value);
+		}
+	&>> {
 	
 }
