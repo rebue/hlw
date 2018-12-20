@@ -2,12 +2,18 @@ package ${modulePackage}.jo;
 
 import java.io.Serializable;
 
+import java.util.Date;
+import java.math.BigDecimal;
+import java.util.List;
+
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,9 +21,6 @@ import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * The persistent class for the ${tableName} database table.
@@ -38,7 +41,9 @@ public class ${entityName}Jo implements Serializable {
 	<&
 		for(var i=0;i<props.~size;i++){
         	println('/**');
-        	println('*@mbg.generated 自动生成，如需修改，请删除本行');
+        	println('* ' + props[i].name);
+        	println('*');
+        	println('* @mbg.generated 自动生成，如需修改，请删除本行');
         	println('*/');
 	        if(props[i].code == 'id') {
 	        	println('@Id');
@@ -62,17 +67,31 @@ public class ${entityName}Jo implements Serializable {
 	&>
 	
 	<&
-		for(feignKey in feignKeys) {
+		for(foreignKey in fkFks) {
 			println('/**');
-        	println('*@mbg.generated 自动生成，如需修改，请删除本行');
+			println('* ' + foreignKey.title);
+        	println('*');
+        	println('* @mbg.generated 自动生成，如需修改，请删除本行');
         	println('*/');
-			print('@JoinColumn(name = "'+feignKey.fkFieldName+'", referencedColumnName = "'+feignKey.pkFieldName+'"');
-			if(!feignKey.isNullable) print(', nullable = false');
+			print('@JoinColumn(name = "'+foreignKey.fkFieldName+'", referencedColumnName = "'+foreignKey.pkFieldName+'"');
+			if(!foreignKey.isNullable) print(', nullable = false');
 			println(')');
 		    print('@ManyToOne(');
-			if(!feignKey.isNullable) print('optional = false');
+			if(!foreignKey.isNullable) print('optional = false');
 			println(')');
-		    println('private '+feignKey.pkClassName+' '+feignKey.pkBeanName+';');
+		    println('private '+foreignKey.pkClassName+' '+foreignKey.pkBeanName+';');
+		}
+	&>
+
+	<&
+		for(foreignKey in fkPks) {
+			println('/**');
+			println('* ' + foreignKey.title + '列表');
+        	println('*');
+        	println('* @mbg.generated 自动生成，如需修改，请删除本行');
+        	println('*/');
+		    print('@OneToMany(cascade = CascadeType.ALL, mappedBy = "'+foreignKey.pkBeanName+'")');
+		    println('private List<'+foreignKey.fkClassName+'> '+foreignKey.fkBeanName+'List;');
 		}
 	&>
 
