@@ -195,9 +195,9 @@ public class HlwStudentCtrl {
         _log.info("listBySex: {}", sex);
         return svc.listBySex(sex);
     }
-    
+
     @GetMapping("/hlw/student/listex")
     public List<HlwStudentJo> listEx() {
-    	return svc.listEx();
+        return svc.listEx();
     }
 }

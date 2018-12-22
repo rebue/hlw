@@ -31,7 +31,9 @@ public class HlwStudentJo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  学生ID
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Id
     @Basic(optional = false)
@@ -39,84 +41,108 @@ public class HlwStudentJo implements Serializable {
     private Long id;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  学号
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = false)
     @Column(name = "STUDENT_CODE", nullable = false, length = 20)
     private String studentCode;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  姓名
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = false)
     @Column(name = "NAME", nullable = false, length = 100)
     private String name;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  电话号码1
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = false)
     @Column(name = "PHONE1", nullable = false, length = 20)
     private String phone1;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  电话号码2
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = false)
     @Column(name = "PHONE2", nullable = false, length = 20)
     private String phone2;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  身份证号码
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
-    @Basic(optional = false)
-    @Column(name = "ID_CARD", nullable = false, length = 18)
+    @Basic(optional = true)
+    @Column(name = "ID_CARD", nullable = true, length = 18)
     private String idCard;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  年龄
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = true)
     @Column(name = "AGE", nullable = true, length = 3)
     private Byte age;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  生日
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = true)
     @Column(name = "BIRTHDAY", nullable = true, length = 10)
     private Date birthday;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  性别
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = true)
     @Column(name = "SEX", nullable = true, length = 3)
     private Byte sex;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  身高
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = true)
     @Column(name = "HEIGHT", nullable = true, precision = 3, scale = 2)
     private BigDecimal height;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  体重
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = true)
     @Column(name = "WEIGHT", nullable = true, precision = 5, scale = 2)
     private BigDecimal weight;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  是否党员
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = true)
     @Column(name = "IS_CPC", nullable = true, length = 3)
     private Boolean isCpc;
 
     /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
+     *  注册时间
+     *
+     *  @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Basic(optional = true)
     @Column(name = "REG_TIME", nullable = true, length = 19)

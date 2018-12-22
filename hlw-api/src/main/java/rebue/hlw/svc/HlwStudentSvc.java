@@ -18,5 +18,5 @@ public interface HlwStudentSvc extends MybatisBaseSvc<HlwStudentMo, java.lang.Lo
      */
     List<HlwStudentMo> listBySex(SexDic sex);
 
-	List<HlwStudentJo> listEx();
+    List<HlwStudentJo> listEx();
 }

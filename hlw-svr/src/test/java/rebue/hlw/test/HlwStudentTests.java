@@ -23,12 +23,7 @@ public class HlwStudentTests {
      */
     private final ObjectMapper _objectMapper = new ObjectMapper();
 
-    /**
-     *  测试基本的增删改查
-     *
-     *  @mbg.generated 自动生成，如需修改，请删除本行
-     */
-//    @Test
+    // @Test
     public void testCrud() throws IOException, ReflectiveOperationException {
         HlwStudentMo mo = null;
         for (int i = 0; i < 20; i++) {
@@ -62,10 +57,10 @@ public class HlwStudentTests {
     }
 
     private final String hostUrl = "http://127.0.0.1:9009";
-    
+
     @Test
     public void test01() throws IOException {
-    	String string = OkhttpUtils.get(hostUrl + "/hlw/student/listex");
-    	System.out.println(string);
+        String string = OkhttpUtils.get(hostUrl + "/hlw/student/listex");
+        System.out.println(string);
     }
 }
