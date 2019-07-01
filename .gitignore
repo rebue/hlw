@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 target
 .classpath
 .project
@@ -13,17 +12,3 @@ app.properties
 ~$*.docx
 rebel.xml
 pom.xml.versionsBackup
-=======
-.classpath
-.project
-target
-.settings
-logs
-.DS_Store
-*.pdb
-*.ldb
-*.gz
-*.log.gz
-*.class
-rebel.xml
->>>>>>> branch 'master' of https://github.com/rebue/hlw.git
