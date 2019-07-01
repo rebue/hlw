@@ -1,5 +1,6 @@
 package ${modulePackage}.svc;
 
+<<<<<<< HEAD
 import rebue.robotech.svc.BaseSvc;
 import ${modulePackage}.mo.${entityName}Mo;
 import ${modulePackage}.jo.${entityName}Jo;
@@ -17,5 +18,23 @@ public interface ${entityName}Svc extends BaseSvc<<&
 		    print(id.value);
 		}
 	&>, ${entityName}Mo, ${entityName}Jo>{
+=======
+import rebue.robotech.svc.MybatisBaseSvc;
+import ${moClassFullName};
+
+/**
+ * ${table.remarks}
+ *
+ * @mbg.generated 自动生成的注释，如需修改本注释，请删除本行
+ */
+public interface ${entityName}Svc extends MybatisBaseSvc<${moClassShortName}, <&
+		for(id in ids){
+			if(!idLP.first) {
+				print(', ');
+			}
+		    print(id.value);
+		}
+	&>>{
+>>>>>>> branch 'master' of https://github.com/rebue/hlw.git
 
 }

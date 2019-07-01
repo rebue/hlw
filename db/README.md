@@ -16,6 +16,10 @@
 - create.sql
   建表语句
 - init.sql
+<<<<<<< HEAD
   建表后初始化表数据的SQL语句
+=======
+  建表后初始化表数据的SQL语句
+>>>>>>> branch 'master' of https://github.com/rebue/hlw.git
 - update.sql
   版本升级时，更新数据库的SQL语句

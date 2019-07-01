@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -33,4 +34,42 @@
     <module>hlw-bll</module>
     <module>hlw-svr</module>
   </modules>
+=======
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.rebue.common-pom</groupId>
+		<artifactId>sb-parent</artifactId>
+		<version>1.0.8</version>
+	</parent>
+
+	<groupId>com.github.rebue.hlw</groupId>
+	<artifactId>hlw</artifactId>
+	<version>1.0.9</version>
+	<packaging>pom</packaging>
+	<description>基于Spring CLoud构建微服务的演示项目</description>
+
+	<modules>
+		<module>hlw-gen</module>
+		<module>hlw-api</module>
+		<module>hlw-bll</module>
+		<module>hlw-svr</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.github.rebue.hlw</groupId>
+				<artifactId>hlw-api</artifactId>
+				<version>1.0.9</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.rebue.hlw</groupId>
+				<artifactId>hlw-bll</artifactId>
+				<version>1.0.9</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+>>>>>>> branch 'master' of https://github.com/rebue/hlw.git
 </project>
