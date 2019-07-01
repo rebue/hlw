@@ -1,17 +1,16 @@
 package rebue.hlw.svc.impl;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
+import rebue.hlw.dao.HlwStudentDao;
+import rebue.hlw.jo.HlwStudentJo;
 import rebue.hlw.mapper.HlwStudentMapper;
 import rebue.hlw.mo.HlwStudentMo;
 import rebue.hlw.svc.HlwStudentSvc;
-
-import rebue.robotech.svc.impl.MybatisBaseSvcImpl;
+import rebue.robotech.svc.impl.BaseSvcImpl;
 
 /**
  * 学生信息
@@ -29,12 +28,12 @@ import rebue.robotech.svc.impl.MybatisBaseSvcImpl;
  */
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 @Service
-public class HlwStudentSvcImpl extends MybatisBaseSvcImpl<HlwStudentMo, java.lang.Long, HlwStudentMapper> implements HlwStudentSvc {
-	
+public class HlwStudentSvcImpl extends BaseSvcImpl<java.lang.Long, HlwStudentJo, HlwStudentDao, HlwStudentMo, HlwStudentMapper> implements HlwStudentSvc {
+
     /**
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
-	private static final Logger _log = LoggerFactory.getLogger(HlwStudentSvcImpl.class);
+    private static final Logger _log = LoggerFactory.getLogger(HlwStudentSvcImpl.class);
 
     /**
      * @mbg.generated 自动生成，如需修改，请删除本行
@@ -42,12 +41,11 @@ public class HlwStudentSvcImpl extends MybatisBaseSvcImpl<HlwStudentMo, java.lan
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public int add(HlwStudentMo mo) {
-    	_log.info("添加学生信息");
+        _log.info("添加学生信息");
         // 如果id为空那么自动生成分布式id
         if (mo.getId() == null || mo.getId() == 0) {
             mo.setId(_idWorker.getId());
         }
         return super.add(mo);
     }
-
 }

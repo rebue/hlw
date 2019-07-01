@@ -1,10 +1,7 @@
 package rebue.hlw.ctrl;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import com.github.pagehelper.PageInfo;
 import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
@@ -15,12 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.github.pagehelper.PageInfo;
-
 import rebue.hlw.mo.HlwStudentMo;
 import rebue.hlw.svc.HlwStudentSvc;
 import rebue.robotech.dic.ResultDic;
+import rebue.robotech.ro.IdRo;
 import rebue.robotech.ro.Ro;
 
 /**
@@ -30,23 +25,17 @@ import rebue.robotech.ro.Ro;
  */
 @RestController
 public class HlwStudentCtrl {
+
     /**
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
-    private final static Logger _log             = LoggerFactory.getLogger(HlwStudentCtrl.class);
+    private static final Logger _log = LoggerFactory.getLogger(HlwStudentCtrl.class);
 
     /**
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Resource
-    private HlwStudentSvc       svc;
-
-    /**
-     * 有唯一约束的字段名称
-     *
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-    private final String        _uniqueFilesName = "某字段内容";
+    private HlwStudentSvc svc;
 
     /**
      * 添加学生信息
@@ -54,9 +43,9 @@ public class HlwStudentCtrl {
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
     @PostMapping("/hlw/student")
-    Ro add(@RequestBody final HlwStudentMo mo) throws Exception {
+    IdRo add(@RequestBody final HlwStudentMo mo) throws Exception {
         _log.info("add HlwStudentMo: {}", mo);
-        final Ro ro = new Ro();
+        final IdRo ro = new IdRo();
         try {
             final int result = svc.add(mo);
             if (result == 1) {
@@ -64,6 +53,7 @@ public class HlwStudentCtrl {
                 _log.info("{}: mo-{}", msg, mo);
                 ro.setMsg(msg);
                 ro.setResult(ResultDic.SUCCESS);
+                ro.setId(mo.getId().toString());
                 return ro;
             } else {
                 final String msg = "添加失败";
@@ -73,15 +63,14 @@ public class HlwStudentCtrl {
                 return ro;
             }
         } catch (final DuplicateKeyException e) {
-            final String msg = "添加失败，" + _uniqueFilesName + "已存在，不允许出现重复";
-            _log.error("{}: mo-{}", msg, mo);
+            final String msg = "添加失败，唯一键重复：" + e.getMessage();
+            _log.error(msg + ": mo-" + mo, e);
             ro.setMsg(msg);
             ro.setResult(ResultDic.FAIL);
             return ro;
         } catch (final RuntimeException e) {
-            final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            final String msg = "添加失败，出现运行时异常(" + sdf.format(new Date()) + ")";
-            _log.error(msg + ": mo=" + mo, e);
+            final String msg = "添加失败，出现运行时异常";
+            _log.error(msg + ": mo-" + mo, e);
             ro.setMsg(msg);
             ro.setResult(ResultDic.FAIL);
             return ro;
@@ -112,15 +101,14 @@ public class HlwStudentCtrl {
                 return ro;
             }
         } catch (final DuplicateKeyException e) {
-            final String msg = "修改失败，" + _uniqueFilesName + "已存在，不允许出现重复";
+            final String msg = "修改失败，唯一键重复：" + e.getMessage();
             _log.error(msg + ": mo=" + mo, e);
             ro.setMsg(msg);
             ro.setResult(ResultDic.FAIL);
             return ro;
         } catch (final RuntimeException e) {
-            final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            final String msg = "修改失败，出现运行时异常(" + sdf.format(new Date()) + ")";
-            _log.error("{}: mo-{}", msg, mo);
+            final String msg = "修改失败，出现运行时异常";
+            _log.error(msg + ": mo-" + mo, e);
             ro.setMsg(msg);
             ro.setResult(ResultDic.FAIL);
             return ro;
@@ -129,7 +117,7 @@ public class HlwStudentCtrl {
 
     /**
      * 删除学生信息
-     * 
+     *
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
     @DeleteMapping("/hlw/student")
@@ -154,12 +142,11 @@ public class HlwStudentCtrl {
 
     /**
      * 查询学生信息
-     * 
+     *
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
     @GetMapping("/hlw/student")
-    PageInfo<HlwStudentMo> list(final HlwStudentMo mo, @RequestParam(value = "pageNum", required = false) Integer pageNum,
-            @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+    PageInfo<HlwStudentMo> list(final HlwStudentMo mo, @RequestParam(value = "pageNum", required = false) Integer pageNum, @RequestParam(value = "pageSize", required = false) Integer pageSize) {
         if (pageNum == null) {
             pageNum = 1;
         }
@@ -179,13 +166,12 @@ public class HlwStudentCtrl {
 
     /**
      * 获取单个学生信息
-     * 
+     *
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
-    @GetMapping("/hlw/student/getbyid")
+    @GetMapping("/hlw/student/get-by-id")
     HlwStudentMo getById(@RequestParam("id") final java.lang.Long id) {
-        _log.info("get HlwStudentMo by id: " + id);
+        _log.info("get HlwStudentMo by id: {}", id);
         return svc.getById(id);
     }
-
 }

@@ -19,7 +19,6 @@
 		"targetFile": "${entityName}Ctrl.java",
 		"isGenTargetOnMiddleTable": false,
 		"backup": false
-<<<<<<< HEAD
 	},
 	{
 		"templateName": "test.btl",
@@ -41,7 +40,5 @@
 		"targetFile": "${entityName}Jo.java",
 		"isGenTargetOnMiddleTable": false,
 		"backup": false
-=======
->>>>>>> branch 'master' of https://github.com/rebue/hlw.git
 	}
 ]
