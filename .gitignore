@@ -1,0 +1,14 @@
+target
+.classpath
+.project
+.settings
+logs
+*.log
+app.properties
+*.pjb
+*.pdb
+*.ldb
+.DS_Store
+~$*.docx
+rebel.xml
+pom.xml.versionsBackup
