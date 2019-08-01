@@ -29,3 +29,4 @@ create table HLW_STUDENT
 
 alter table HLW_STUDENT comment '学生信息';
 
+

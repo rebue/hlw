@@ -82,3 +82,4 @@ public class ${entityName}Tests {
         Assert.assertEquals(ResultDic.SUCCESS, deleteRo.getResult());
 	}
 }
+
