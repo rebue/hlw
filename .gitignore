@@ -3,11 +3,15 @@
 target
 .settings
 logs
+*.log
+*.log.gz
+app.properties
 .DS_Store
 *.pjb
 *.pdb
 *.ldb
 *.gz
-*.log.gz
 *.class
+~$*.docx
 rebel.xml
+pom.xml.versionsBackup
