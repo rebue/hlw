@@ -11,7 +11,6 @@
 	<artifactId>hlw</artifactId>
 	<packaging>pom</packaging>
 	<description>基于Spring CLoud构建微服务的演示项目</description>
-	<version>1.1.0</version>
 
 	<dependencyManagement>
 		<dependencies>
