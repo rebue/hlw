@@ -1,9 +1,11 @@
 package rebue.hlw.ctrl;
 
-import com.github.pagehelper.PageInfo;
 import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.github.pagehelper.PageInfo;
+
 import rebue.hlw.mo.HlwStudentMo;
 import rebue.hlw.svc.HlwStudentSvc;
 import rebue.robotech.dic.ResultDic;
@@ -20,10 +25,9 @@ import rebue.robotech.ro.Ro;
 
 /**
  * 学生信息
- *
- * @mbg.generated 自动生成的注释，如需修改本注释，请删除本行
  */
 @RestController
+@RefreshScope
 public class HlwStudentCtrl {
 
     /**
@@ -35,7 +39,7 @@ public class HlwStudentCtrl {
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
     @Resource
-    private HlwStudentSvc svc;
+    private HlwStudentSvc       svc;
 
     /**
      * 添加学生信息
@@ -135,7 +139,8 @@ public class HlwStudentCtrl {
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
     @GetMapping("/hlw/student")
-    PageInfo<HlwStudentMo> list(final HlwStudentMo mo, @RequestParam(value = "pageNum", required = false) Integer pageNum, @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+    PageInfo<HlwStudentMo> list(final HlwStudentMo mo, @RequestParam(value = "pageNum", required = false) Integer pageNum,
+            @RequestParam(value = "pageSize", required = false) Integer pageSize) {
         _log.info("received get:/hlw/student");
         _log.info("student.list: {},pageNum-{},pageSize-{}", mo, pageNum, pageSize);
         if (pageNum == null) {
@@ -165,5 +170,15 @@ public class HlwStudentCtrl {
         _log.info("received get:/hlw/student/get-by-id");
         _log.info("hlwStudentMoCtrl.getById: {}", id);
         return svc.getById(id);
+    }
+
+    @Value("${refreshScope:default}")
+    private String refreshScope;
+
+    @GetMapping("/hlw/refresh-scope")
+    String getRefreshScope() {
+        final String msg = "refreshScope: " + refreshScope;
+        _log.info(msg);
+        return msg;
     }
 }

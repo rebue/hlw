@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 import rebue.hlw.dao.HlwStudentDao;
 import rebue.hlw.jo.HlwStudentJo;
 import rebue.hlw.mapper.HlwStudentMapper;
@@ -28,6 +29,7 @@ import rebue.robotech.svc.impl.BaseSvcImpl;
  */
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 @Service
+//@RefreshScope
 public class HlwStudentSvcImpl extends BaseSvcImpl<java.lang.Long, HlwStudentJo, HlwStudentDao, HlwStudentMo, HlwStudentMapper> implements HlwStudentSvc {
 
     /**
@@ -40,7 +42,7 @@ public class HlwStudentSvcImpl extends BaseSvcImpl<java.lang.Long, HlwStudentJo,
      */
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public int add(HlwStudentMo mo) {
+    public int add(final HlwStudentMo mo) {
         _log.info("hlwStudentSvc.add: 添加学生信息 mo-", mo);
         // 如果id为空那么自动生成分布式id
         if (mo.getId() == null || mo.getId() == 0) {
@@ -48,4 +50,5 @@ public class HlwStudentSvcImpl extends BaseSvcImpl<java.lang.Long, HlwStudentJo,
         }
         return super.add(mo);
     }
+
 }

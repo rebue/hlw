@@ -1,9 +1,9 @@
 # 开发环境的配置
-debug: true
+debug: false
 
 server:
   # 自定义端口号，方便开发测试
-  port: 9009
+  port: 9010
 
 eureka:
   client:
@@ -15,9 +15,12 @@ logging:
   level:
     root: info
     rebue: trace
-    com.netflix.discovery: off
+    com.netflix.discovery: 'OFF'
 
 spring:
+  cloud:
+    config:
+      enabled: false
   rabbitmq:
       host: 127.0.0.1
       port: 5672
