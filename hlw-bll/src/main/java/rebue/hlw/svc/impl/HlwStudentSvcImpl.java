@@ -65,7 +65,7 @@ public class HlwStudentSvcImpl extends BaseSvcImpl<java.lang.Long, HlwStudentJo,
         final int rowCount = super.modify(mo);
         // XXX ElasticSearch: 修改时调用
         if (rowCount == 1) {
-            studentEsSvc.add(dozerMapper.map(mo, HlwStudentSo.class));
+            studentEsSvc.modify(dozerMapper.map(mo, HlwStudentSo.class));
         }
         return rowCount;
     }
