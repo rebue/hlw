@@ -1,15 +1,20 @@
 package rebue.hlw.svc.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.dozermapper.core.Mapper;
+
+import lombok.extern.slf4j.Slf4j;
 import rebue.hlw.dao.HlwStudentDao;
 import rebue.hlw.jo.HlwStudentJo;
 import rebue.hlw.mapper.HlwStudentMapper;
 import rebue.hlw.mo.HlwStudentMo;
+import rebue.hlw.so.HlwStudentSo;
+import rebue.hlw.svc.HlwStudentEsSvc;
 import rebue.hlw.svc.HlwStudentSvc;
 import rebue.robotech.svc.impl.BaseSvcImpl;
 
@@ -29,26 +34,51 @@ import rebue.robotech.svc.impl.BaseSvcImpl;
  */
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 @Service
-//@RefreshScope
+@Slf4j
 public class HlwStudentSvcImpl extends BaseSvcImpl<java.lang.Long, HlwStudentJo, HlwStudentDao, HlwStudentMo, HlwStudentMapper> implements HlwStudentSvc {
 
-    /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
-    private static final Logger _log = LoggerFactory.getLogger(HlwStudentSvcImpl.class);
+    @Resource
+    private HlwStudentEsSvc studentEsSvc;
 
-    /**
-     * @mbg.generated 自动生成，如需修改，请删除本行
-     */
+    @Resource
+    Mapper                  dozerMapper;
+
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public int add(final HlwStudentMo mo) {
-        _log.info("hlwStudentSvc.add: 添加学生信息 mo-", mo);
+        log.info("hlwStudentSvc.add: 添加学生信息 mo-", mo);
         // 如果id为空那么自动生成分布式id
         if (mo.getId() == null || mo.getId() == 0) {
             mo.setId(_idWorker.getId());
         }
-        return super.add(mo);
+        final int rowCount = super.add(mo);
+        // XXX ElasticSearch: 添加时调用
+        if (rowCount == 1) {
+            studentEsSvc.add(dozerMapper.map(mo, HlwStudentSo.class));
+        }
+        return rowCount;
+    }
+
+    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public int modify(final HlwStudentMo mo) {
+        final int rowCount = super.modify(mo);
+        // XXX ElasticSearch: 修改时调用
+        if (rowCount == 1) {
+            studentEsSvc.add(dozerMapper.map(mo, HlwStudentSo.class));
+        }
+        return rowCount;
+    }
+
+    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public int del(final Long id) {
+        final int rowCount = super.del(id);
+        // XXX ElasticSearch: 删除时调用
+        if (rowCount == 1) {
+            studentEsSvc.del(id.toString());
+        }
+        return rowCount;
     }
 
 }

@@ -14,7 +14,7 @@ spring:
       naming:
         # 识别大写表
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      
+
 eureka:
   instance:
     # 客户端注册时使用IP而不是hostname(在客户端配置)

@@ -19,3 +19,10 @@
   建表后初始化表数据的SQL语句
 - update.sql
   版本升级时，更新数据库的SQL语句
+
+## 3. 项目/es目录说明
+
+用于存放操作ElasticSearch的语句
+
+- create.sh
+  建index语句

@@ -3,7 +3,7 @@ debug: false
 
 server:
   # 自定义端口号，方便开发测试
-  port: 9010
+  port: 9009
 
 eureka:
   client:
@@ -22,13 +22,20 @@ spring:
     config:
       enabled: false
   rabbitmq:
-      host: 127.0.0.1
-      port: 5672
-      username: guest
-      password: guest
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/hlw?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
     username: hlw
     password: hlw
+  main:
+    # XXX ElasticSearch: es-spring-boot-starter需要覆盖spring boot原来的bean
+    allow-bean-definition-overriding: true
 
+# XXX ElasticSearch: 需要配置ElasticSearch的服务器
+elasticsearch:
+  host: 127.0.0.1:9200
+  
 appid: 1
