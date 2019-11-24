@@ -3,7 +3,7 @@ debug: true
 
 server:
   # 自定义端口号，方便开发测试
-  port: 9009
+  port: 9400
 
 eureka:
   client:
@@ -15,14 +15,18 @@ logging:
   level:
     root: info
     rebue: trace
-    com.netflix.discovery: off
+    # 注意'OFF'必须大写并加引号
+    com.netflix.discovery: 'OFF'
 
 spring:
+  cloud:
+    config:
+      enabled: false
   rabbitmq:
-      host: 127.0.0.1
-      port: 5672
-      username: guest
-      password: guest
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/hlw?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
     username: hlw
