@@ -19,6 +19,9 @@ logging:
     com.netflix.discovery: 'OFF'
 
 spring:
+  sleuth:
+    sampler:
+      probability: 1
   cloud:
     config:
       enabled: false
