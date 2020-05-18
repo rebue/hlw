@@ -1,10 +1,8 @@
 package com.github.rebue.hlw.ctrl;
 
-import com.github.pagehelper.PageInfo;
-import com.github.rebue.hlw.mo.HlwStudentMo;
-import com.github.rebue.hlw.svc.HlwStudentSvc;
 import javax.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +11,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.github.pagehelper.PageInfo;
+import com.github.rebue.hlw.mo.HlwStudentMo;
+import com.github.rebue.hlw.svc.HlwStudentSvc;
+
+import lombok.extern.slf4j.Slf4j;
 import rebue.robotech.dic.ResultDic;
 import rebue.robotech.ro.IdRo;
 import rebue.robotech.ro.Ro;
@@ -23,6 +27,7 @@ import rebue.robotech.ro.Ro;
  * @mbg.generated 自动生成的注释，如需修改本注释，请删除本行
  */
 @RestController
+@RefreshScope
 @Slf4j
 public class HlwStudentCtrl {
 
@@ -130,7 +135,9 @@ public class HlwStudentCtrl {
      * @mbg.generated 自动生成，如需修改，请删除本行
      */
     @GetMapping("/hlw/student")
-    PageInfo<HlwStudentMo> list(final HlwStudentMo mo, @RequestParam(value = "pageNum", required = false) Integer pageNum, @RequestParam(value = "pageSize", required = false) Integer pageSize) {
+    PageInfo<HlwStudentMo> list(final HlwStudentMo mo,
+            @RequestParam(value = "pageNum", required = false) Integer pageNum,
+            @RequestParam(value = "pageSize", required = false) Integer pageSize) {
         log.info("received get:/hlw/student");
         log.info("studentCtrl.list: {},pageNum-{},pageSize-{}", mo, pageNum, pageSize);
         if (pageNum == null) {
