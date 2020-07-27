@@ -1,0 +1,156 @@
+package ${modulePackage}.ctrl;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import ${moClassFullName};
+import ${modulePackage}.api.${entityName}Api;
+
+import rebue.robotech.dic.ResultDic;
+import reactor.core.publisher.Mono;
+import rebue.robotech.ra.IdRa;
+import rebue.robotech.ra.BooleanRa;
+import rebue.robotech.ra.PageRa;
+import rebue.robotech.ra.PojoRa;
+import rebue.robotech.ro.Ro;
+
+/**
+ * ${table.remarks}
+ *
+ * @mbg.generated 自动生成的注释，如需修改本注释，请删除本行
+ */
+@RestController
+public class ${entityName}Ctrl {
+    /**
+     * @mbg.generated 自动生成，如需修改，请删除本行
+     */
+    @Resource
+    private ${entityName}Api api;
+
+    /**
+     * 添加${entityTitle}
+     *
+     * @mbg.generated 自动生成，如需修改，请删除本行
+     */
+    @PostMapping("/${strutil.toLowerCase(entityNamePrefix)}/${kebab(sputil.uncapitalize(entitySimpleName))}")
+    public Mono<Ro<IdRa<<&
+                            for(id in ids){
+                                if(!idLP.first) {
+                                    print(', ');
+                                }
+                                print(id.value);
+                            }
+                        &>
+                        >>> add(@RequestBody final ${moClassShortName} mo) {
+        return Mono.create(callback -> callback.success(api.add(mo)));
+    }
+
+    /**
+     * 修改${entityTitle}
+     *
+     * @mbg.generated 自动生成，如需修改，请删除本行
+     */
+    @PutMapping("/${strutil.toLowerCase(entityNamePrefix)}/${kebab(sputil.uncapitalize(entitySimpleName))}")
+    public Mono<Ro<?>> modify(@RequestBody final ${moClassShortName} mo) {
+        return Mono.create(callback -> callback.success(api.modify(mo)));
+    }
+
+    /**
+     * 删除${entityTitle}
+     * 
+     * @mbg.generated 自动生成，如需修改，请删除本行
+     */
+    @DeleteMapping("/${strutil.toLowerCase(entityNamePrefix)}/${kebab(sputil.uncapitalize(entitySimpleName))}")
+    public Mono<Ro<?>> del(<&
+        for(id in ids){
+            if(!idLP.first) {
+                print(', ');
+            }
+            print('@RequestParam("');
+            print(id.key);
+            print('") final ');
+            print(id.value);
+            print(' ');
+            print(id.key);
+        }
+    &>) {
+		return Mono.create(callback -> callback.success(api.del(<&
+            for(id in ids){
+                if(!idLP.first) {
+                    print(', ');
+                }
+                print(id.key);
+            }
+        &>)));
+    }
+
+    /**
+     * 获取单个${entityTitle}
+     * 
+     * @mbg.generated 自动生成，如需修改，请删除本行
+     */
+    @GetMapping("/${strutil.toLowerCase(entityNamePrefix)}/${kebab(sputil.uncapitalize(entitySimpleName))}/get-by-id")
+    public Mono<Ro<PojoRa<${entityName}Mo>>> getById(<&
+        for(id in ids){
+            if(!idLP.first) {
+                print(', ');
+            }
+            print('@RequestParam("');
+            print(id.key);
+            print('") final ');
+            print(id.value);
+            print(' ');
+            print(id.key);
+        }
+    &>) {
+        return Mono.create(callback -> callback.success(api.getById(id)));
+    }
+
+    /**
+     * 判断${entityTitle}是否存在
+     * 
+     * @mbg.generated 自动生成，如需修改，请删除本行
+     */
+    @GetMapping("/${strutil.toLowerCase(entityNamePrefix)}/${kebab(sputil.uncapitalize(entitySimpleName))}/exist-by-id")
+    public Mono<Ro<BooleanRa>> existById(<&
+        for(id in ids){
+            if(!idLP.first) {
+                print(', ');
+            }
+            print('@RequestParam("');
+            print(id.key);
+            print('") final ');
+            print(id.value);
+            print(' ');
+            print(id.key);
+        }
+    &>) {
+        return Mono.create(callback -> callback.success(api.existById(id)));
+    }
+
+    /**
+     * 查询${entityTitle}
+     *
+     * @param pageNum 查询页码
+     * @param pageSize 每页大小
+     * @param orderBy 排序字段
+     *
+     * @mbg.generated 自动生成，如需修改，请删除本行
+     */
+    @GetMapping("/${strutil.toLowerCase(entityNamePrefix)}/${kebab(sputil.uncapitalize(entitySimpleName))}/list")
+    public Mono<Ro<PageRa<${moClassShortName}>>> list(final ${moClassShortName} qo, @RequestParam(value = "pageNum", required = false) final Integer pageNum, @RequestParam(value = "pageSize", required = false) final Integer pageSize, @RequestParam(value = "orderBy", required = false) final String orderBy) {
+        return Mono.create(callback -> callback.success(api.list(qo, pageNum, pageSize, orderBy, 100)));
+    }
+
+}
