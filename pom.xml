@@ -12,7 +12,6 @@
     <artifactId>hlw</artifactId>
     <packaging>pom</packaging>
     <description>基于Spring Cloud构建微服务的演示项目</description>
-    <version>1.2.4</version>
 
     <modules>
         <module>hlw-gen</module>
